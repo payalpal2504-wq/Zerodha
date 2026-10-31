@@ -1,0 +1,165 @@
+/* =========================
+   Global Styles
+========================= */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #424242;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* =========================
+   Zerodha Brand
+========================= */
+
+a {
+  color: #387ed1;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #265da4;
+}
+
+.btn-primary {
+  background-color: #387ed1 !important;
+  border-color: #387ed1 !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2b6cb0 !important;
+  border-color: #2b6cb0 !important;
+  box-shadow: 0 4px 12px rgba(56, 126, 209, 0.35);
+}
+
+/* =========================
+   Navbar
+========================= */
+
+.nav-link {
+  color: #666 !important;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #387ed1 !important;
+}
+
+.navbar-toggler {
+  box-shadow: none !important;
+  font-size: 20px;
+}
+
+/* Mobile Navigation */
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  .navbar-nav {
+    align-items: flex-start !important;
+    padding-top: 12px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 12px;
+  }
+}
+
+/* Desktop Navigation */
+
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex !important;
+  }
+}
+
+/* =========================
+   Ecosystem Dropdown
+========================= */
+
+.ecosystem-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 580px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.ecosystem-heading {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+/* Dropdown Items */
+
+.dropdown-item-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #444;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item-link:hover {
+  background: #f7f9fc;
+  color: #387ed1;
+}
+
+.dropdown-item-link img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+
+/* Dropdown Animation */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide Desktop Ecosystem Dropdown on Mobile */
+
+@media (max-width: 991.98px) {
+  .ecosystem-dropdown {
+    display: none;
+  }
+}

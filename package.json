@@ -1,0 +1,12 @@
+{
+  "name": "zerodha-trading-platform",
+  "version": "1.0.0",
+  "description": "Zerodha Kite Trading Dashboard - Full Stack Architecture",
+  "private": true,
+  "scripts": {
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "test:backend": "cd backend && npm test",
+    "build:frontend": "cd frontend && npm run build"
+  }
+}
