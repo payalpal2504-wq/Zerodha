@@ -21,19 +21,29 @@ app.use(helmet());
 
 // CORS configuration supporting credentials (cookies)
 const allowedOrigins = [
-  process.env.FRONTEND_URL || "http://localhost:5173",
+  process.env.FRONTEND_URL,
   "http://localhost:5173",
   "http://127.0.0.1:5173",
   "http://localhost:3000",
-];
+  "http://localhost:4173",
+].filter(Boolean);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, or Postman)
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (curl, Postman, server-to-server)
+      if (!origin) return callback(null, true);
+
+      // Check explicit allowed origins
+      if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
+
+      // Allow onrender.com and vercel.app preview and production domains
+      if (/\.onrender\.com$/.test(origin) || /\.vercel\.app$/.test(origin)) {
+        return callback(null, true);
+      }
+
       return callback(null, true); // Dev-friendly fallback
     },
     credentials: true,

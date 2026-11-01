@@ -22,6 +22,7 @@
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.0",
+    "zerodha-trading-platform": "file:..",
     "zod": "^4.6.7"
   },
   "devDependencies": {

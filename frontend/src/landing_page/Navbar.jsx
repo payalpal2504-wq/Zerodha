@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const products = [
   ["kite.png", "Kite", "Trading platform"],
@@ -20,6 +21,7 @@ const platforms = [
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEcosystemOpen, setIsEcosystemOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
 
   const menuRef = useRef(null);
   const location = useLocation();
@@ -81,23 +83,57 @@ function Navbar() {
         >
           <ul className="navbar-nav ms-auto align-items-lg-center mb-2 mb-lg-0">
 
-            {[
-              ["Signup", "/signup"],
-              ["About", "/about"],
-              ["Products", "/products"],
-              ["Pricing", "/pricing"],
-              ["Support", "/support"],
-            ].map(([label, path]) => (
-              <li className="nav-item" key={path}>
-                <Link
-                  className="nav-link px-3"
-                  to={path}
-                  onClick={closeMobileMenu}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {isAuthenticated ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link px-3 fw-semibold text-primary" to="/dashboard" onClick={closeMobileMenu}>
+                    <i className="fa fa-line-chart me-1"></i> Dashboard
+                  </Link>
+                </li>
+                {[
+                  ["About", "/about"],
+                  ["Products", "/products"],
+                  ["Pricing", "/pricing"],
+                  ["Support", "/support"],
+                ].map(([label, path]) => (
+                  <li className="nav-item" key={path}>
+                    <Link className="nav-link px-3" to={path} onClick={closeMobileMenu}>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+                <li className="nav-item ms-lg-2">
+                  <span className="badge bg-light text-primary border px-2 py-2 fw-medium me-2">
+                    <i className="fa fa-user me-1"></i> {user?.userId || "USER"}
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger btn-sm py-1 px-2"
+                    onClick={() => {
+                      logout();
+                      closeMobileMenu();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              [
+                ["Signup", "/signup"],
+                ["Login", "/login"],
+                ["About", "/about"],
+                ["Products", "/products"],
+                ["Pricing", "/pricing"],
+                ["Support", "/support"],
+              ].map(([label, path]) => (
+                <li className="nav-item" key={path}>
+                  <Link className="nav-link px-3" to={path} onClick={closeMobileMenu}>
+                    {label}
+                  </Link>
+                </li>
+              ))
+            )}
 
             {/* Desktop Ecosystem Menu */}
             <li
